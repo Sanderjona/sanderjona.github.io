@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sander Ramirez</title>
+  <meta name="description" content="Programador junior. Aquí están mis proyectos, mis redes y lo que estoy aprendiendo.">
+
+  <!-- ✏️ Vista previa al compartir (WhatsApp, LinkedIn…). Si cambias la dirección de la web, actualiza og:url y og:image -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="sanderdev">
+  <meta property="og:title" content="Sander Ramirez · sanderdev">
+  <meta property="og:description" content="Programador junior. Aquí están mis proyectos, mis redes y lo que estoy aprendiendo.">
+  <meta property="og:url" content="https://sanderjona.github.io/">
+  <meta property="og:image" content="https://sanderjona.github.io/foto.jpg">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Foto de Sander Ramirez">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #1c1c1c;
+      --panel: #242424;
+      --text: #ffffff;
+      --text-soft: #e5e5e5;
+      --muted: #a3a3a3;
+      --linea: #3a3a3a;
+      --cuadricula: rgba(255, 255, 255, 0.07);
+      --azul: #3fb0f5;
+      --verde: #00a843;
+      --amarillo: #ffa41c;
+      --naranja: #ff5500;
+      --rosa: #fe2c55;
+      --morado: #b388ff;
+      --tinta: #111111;
+      --icono-fondo: rgba(255, 255, 255, 0.35);
+      --sombra: 4px 4px 0 #ffffff;
+      --sombra-hover: 7px 7px 0 #ffffff;
+      --sombra-boton: 3px 3px 0 #111111;
+      --sombra-boton-hover: 5px 5px 0 #111111;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(var(--cuadricula) 1px, transparent 1px),
+        linear-gradient(90deg, var(--cuadricula) 1px, transparent 1px);
+      background-size: 40px 40px;
+      min-height: 100vh;
+    }
+
+    .contenedor {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--azul);
+      outline-offset: 3px;
+    }
+
+    /* ---------- Marca (esquina superior izquierda) ---------- */
+    .marca {
+      padding: 20px 24px 0;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .marca span { color: var(--azul); }
+
+    /* ---------- Perfil ---------- */
+    .perfil {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .avatar {
+      width: 108px;
+      height: 108px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: var(--azul);
+      color: var(--tinta);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      border: 2px solid #fff;
+      box-shadow: var(--sombra);
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    /* La foto se mueve igual que las tarjetas de enlaces */
+    .avatar:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--sombra-hover);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: clamp(24px, 6vw, 28px);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .usuario {
+      display: inline-block;
+      margin-top: 2px;
+      color: var(--azul);
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .usuario:hover { text-decoration: underline; }
+
+    .redes {
+      display: flex;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .redes a {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      color: #fff;
+      transition: color 0.15s, transform 0.15s;
+    }
+
+    .redes a:hover {
+      color: var(--azul);
+      transform: translateY(-2px);
+    }
+
+    .redes svg { width: 26px; height: 26px; }
+
+    /* ---------- Datos ---------- */
+    .datos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 28px 0 24px;
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .datos span {
+      padding: 4px 10px;
+      background: var(--panel);
+      border: 1px solid #fff;
+    }
+
+    .datos strong { color: var(--azul); font-weight: 700; }
+
+    .bio {
+      font-size: 17px;
+      color: var(--text-soft);
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 40px 0 16px;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    /* Cuadrado de color antes de cada título, del mismo color que su tarjeta en «Mis enlaces» */
+    h2::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      background: var(--acento, var(--verde));
+      border: 2px solid #fff;
+      box-shadow: 2px 2px 0 #fff;
+    }
+
+    #proyectos { --acento: var(--verde); }
+    #tareas { --acento: var(--naranja); }
+    #ideas  { --acento: var(--azul); }
+
+    /* ---------- Tarjetas de enlaces ---------- */
+    .tarjetas {
+      list-style: none;
+      display: grid;
+      gap: 18px;
+    }
+
+    .tarjeta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      color: var(--tinta);
+      text-decoration: none;
+      border: 1px solid #fff;
+      box-shadow: var(--sombra);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    /* Solo se mueven las tarjetas que son enlaces; las de ideas sin enlace se quedan quietas */
+    a.tarjeta:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--sombra-hover);
+    }
+
+    a.tarjeta:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 #fff;
+    }
+
+    .tarjeta .icono {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      line-height: 1;
+      background: var(--icono-fondo);
+      border: 2px solid var(--tinta);
+    }
+
+    .tarjeta .icono svg { width: 22px; height: 22px; }
+
+    .tarjeta .titulo {
+      display: block;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .tarjeta .detalle {
+      display: block;
+      font-size: 13px;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+
+    .verde    { background: var(--verde); }
+    .amarillo { background: var(--amarillo); }
+    .naranja  { background: var(--naranja); }
+    .azul     { background: var(--azul); }
+    .rosa     { background: var(--rosa); }
+    .morado   { background: var(--morado); }
+
+    /* ---------- Proyectos ---------- */
+    .proyecto { align-items: flex-start; }
+
+    .proyecto .detalle { margin-top: 2px; }
+
+    .etiquetas {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .etiquetas li {
+      padding: 1px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--tinta);
+    }
+
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .boton {
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--tinta);
+      background: var(--text);
+      text-decoration: none;
+      border: 2px solid var(--tinta);
+      box-shadow: var(--sombra-boton);
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .boton:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--sombra-boton-hover);
+    }
+
+    .boton:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--tinta);
+    }
+
+    .aqui {
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* ---------- Ideas ---------- */
+    .ideas-vacio {
+      padding: 20px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--linea);
+    }
+
+    /* ---------- Tareas ---------- */
+    .caja {
+      background: var(--panel);
+      border: 1px solid #fff;
+      box-shadow: var(--sombra);
+      padding: 20px;
+    }
+
+    .form-tarea {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .form-tarea input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--linea);
+      transition: border-color 0.15s;
+    }
+
+    .form-tarea input::placeholder { color: var(--muted); }
+
+    .form-tarea input:focus {
+      outline: none;
+      border-color: var(--azul);
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    .btn-primario {
+      padding: 12px 20px;
+      background: var(--azul);
+      color: var(--tinta);
+      font-weight: 600;
+      border: 1px solid #fff;
+      box-shadow: 3px 3px 0 #fff;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+
+    .btn-primario:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 #fff;
+    }
+
+    .btn-primario:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 #fff;
+    }
+
+    .lista {
+      list-style: none;
+      border-top: 1px solid var(--linea);
+    }
+
+    .tarea {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 4px;
+      border-bottom: 1px solid var(--linea);
+      animation: aparecer 0.2s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .tarea input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      accent-color: var(--azul);
+      cursor: pointer;
+    }
+
+    .tarea .texto {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      transition: color 0.15s;
+    }
+
+    .tarea.hecha .texto {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .tarea .editar {
+      flex: 1;
+      min-width: 0;
+      font: inherit;
+      padding: 4px 8px;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--azul);
+      outline: none;
+    }
+
+    .btn-borrar {
+      width: 32px;
+      height: 32px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1;
+      opacity: 0.6;
+      transition: opacity 0.15s, color 0.15s;
+    }
+
+    .tarea:hover .btn-borrar,
+    .btn-borrar:focus-visible { opacity: 1; }
+
+    .btn-borrar:hover { color: var(--naranja); }
+
+    .vacio {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      border-bottom: 1px solid var(--linea);
+    }
+
+    .pie-tareas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .filtros { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .filtros button {
+      padding: 4px 12px;
+      border: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .filtros button:hover { color: var(--text); }
+
+    .filtros button[aria-pressed="true"] {
+      color: var(--azul);
+      border-color: var(--azul);
+      font-weight: 600;
+    }
+
+    .btn-limpiar { padding: 4px 8px; }
+    .btn-limpiar:hover { color: var(--naranja); }
+    .btn-limpiar:disabled { opacity: 0.4; cursor: default; color: var(--muted); }
+
+    .ayuda {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 48px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 480px) {
+      .marca { padding: 16px 16px 0; font-size: 20px; }
+      .perfil { gap: 16px; }
+      .avatar { width: 84px; height: 84px; font-size: 30px; }
+      .bio { font-size: 16px; }
+      .tarjeta { padding: 12px 14px; gap: 12px; }
+      .tarjeta .icono { width: 38px; height: 38px; font-size: 19px; }
+      .tarjeta .icono svg { width: 20px; height: 20px; }
+      h2 { font-size: 23px; gap: 10px; }
+      .tarjeta .titulo { font-size: 16px; }
+      .form-tarea { flex-direction: column; }
+      .pie-tareas { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✏️ Título de la esquina superior izquierda -->
+  <p class="marca">sander<span>dev</span></p>
+
+  <div class="contenedor">
+
+    <!-- ✏️ Cambia aquí tu nombre, usuario y enlaces -->
+    <header class="perfil">
+      <!-- Para cambiar la foto: reemplaza "foto.jpg" en esta carpeta -->
+      <div class="avatar" id="avatar"><img src="foto.jpg" alt="Foto de Sander Ramirez"></div>
+
+      <div>
+        <h1 id="nombre">Sander Ramirez</h1>
+        <a class="usuario" href="https://github.com/Sanderjona" target="_blank" rel="noopener noreferrer">@Sanderjona</a>
+
+        <nav class="redes" aria-label="Redes">
+          <a href="https://github.com/Sanderjona" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/sander-jonathan-ramirez-arroyave-618651311" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/>
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@sanderramirez59" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12.53.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07Z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/sander_ramirez20" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+          </a>
+          <a href="mailto:sanderarroyave@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-10 6L2 7"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ✏️ Cambia aquí tus datos destacados -->
+    <p class="datos">
+      <span><strong>Programador</strong> junior</span>
+      <span><strong>HTML · CSS · JS</strong> en práctica</span>
+      <span><strong>100%</strong> ganas de aprender</span>
+    </p>
+
+    <!-- ✏️ Cambia aquí tu texto -->
+    <p class="bio">
+      Hola, soy Sander, programador junior con muchas ganas de crecer en el desarrollo
+      de software. Me gusta resolver problemas, escribir código limpio y mejorar un poco
+      cada día. Aquí encontrarás mis enlaces ¡Bienvenid@!
+    </p>
+
+    <h2>Mis enlaces</h2>
+    <ul class="tarjetas">
+      <li>
+        <a class="tarjeta verde" href="https://github.com/Sanderjona" target="_blank" rel="noopener noreferrer">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>
+          </span>
+          <span>
+            <span class="titulo">GitHub</span>
+            <span class="detalle">Mira mis proyectos y mi código</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta azul" href="https://www.linkedin.com/in/sander-jonathan-ramirez-arroyave-618651311" target="_blank" rel="noopener noreferrer">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2M3 13h18"/></svg>
+          </span>
+          <span>
+            <span class="titulo">LinkedIn</span>
+            <span class="detalle">Conecta conmigo y mira mi perfil profesional</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta rosa" href="https://www.tiktok.com/@sanderramirez59" target="_blank" rel="noopener noreferrer">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.53.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07Z"/></svg>
+          </span>
+          <span>
+            <span class="titulo">TikTok</span>
+            <span class="detalle">@sanderramirez59</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta morado" href="https://www.instagram.com/sander_ramirez20" target="_blank" rel="noopener noreferrer">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+          </span>
+          <span>
+            <span class="titulo">Instagram</span>
+            <span class="detalle">@sander_ramirez20</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta amarillo" href="mailto:sanderarroyave@gmail.com">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m22 7-10 6L2 7"/></svg>
+          </span>
+          <span>
+            <span class="titulo">Escríbeme</span>
+            <span class="detalle">sanderarroyave@gmail.com</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta verde" href="#proyectos">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z"/></svg>
+          </span>
+          <span>
+            <span class="titulo">Mis proyectos</span>
+            <span class="detalle">Lo que he construido mientras aprendo</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta naranja" href="#tareas">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h11"/></svg>
+          </span>
+          <span>
+            <span class="titulo">Mis tareas</span>
+            <span class="detalle">Lo que estoy aprendiendo y haciendo ahora</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="tarjeta azul" href="#ideas">
+          <span class="icono" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V17h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2Z"/></svg>
+          </span>
+          <span>
+            <span class="titulo">Mis ideas</span>
+            <span class="detalle">Cosas que quiero crear o probar</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <h2 id="proyectos">Mis proyectos</h2>
+    <!-- ✏️ Añade aquí tus proyectos: copia un <li> completo y cambia el texto, las etiquetas y los enlaces -->
+    <ul class="tarjetas" aria-labelledby="proyectos">
+      <li>
+        <article class="tarjeta proyecto amarillo">
+          <span class="icono" aria-hidden="true">🏠</span>
+          <div>
+            <h3 class="titulo">Bienes raíces</h3>
+            <p class="detalle">Web de una inmobiliaria de casas y departamentos de lujo, con página de inicio y «Nosotros».</p>
+            <ul class="etiquetas" aria-label="Tecnologías">
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+            <p class="botones">
+              <a class="boton" href="https://sanderjona.github.io/curso-esencial-html-css/Bienes%20raices/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo de Bienes raíces">Ver demo</a>
+              <a class="boton" href="https://github.com/Sanderjona/curso-esencial-html-css/tree/main/Bienes%20raices" target="_blank" rel="noopener noreferrer" aria-label="Código de Bienes raíces">Código</a>
+            </p>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="tarjeta proyecto morado">
+          <span class="icono" aria-hidden="true">📝</span>
+          <div>
+            <h3 class="titulo">El Blog de Sander</h3>
+            <p class="detalle">Mi blog sobre los conceptos esenciales del desarrollo web, como el modelo de caja.</p>
+            <ul class="etiquetas" aria-label="Tecnologías">
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+            <p class="botones">
+              <a class="boton" href="https://sanderjona.github.io/curso-esencial-html-css/" target="_blank" rel="noopener noreferrer" aria-label="Ver demo de El Blog de Sander">Ver demo</a>
+              <a class="boton" href="https://github.com/Sanderjona/curso-esencial-html-css" target="_blank" rel="noopener noreferrer" aria-label="Código de El Blog de Sander">Código</a>
+            </p>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="tarjeta proyecto verde">
+          <span class="icono" aria-hidden="true">💻</span>
+          <div>
+            <h3 class="titulo">Hello-Git</h3>
+            <p class="detalle">Mis prácticas de Git y GitHub con pequeños programas en Python.</p>
+            <ul class="etiquetas" aria-label="Tecnologías">
+              <li>Python</li>
+              <li>Git</li>
+            </ul>
+            <p class="botones">
+              <a class="boton" href="https://github.com/Sanderjona/Hello-Git" target="_blank" rel="noopener noreferrer" aria-label="Código de Hello-Git">Código</a>
+            </p>
+          </div>
+        </article>
+      </li>
+      <li>
+        <article class="tarjeta proyecto naranja">
+          <span class="icono" aria-hidden="true">🔗</span>
+          <div>
+            <h3 class="titulo">Esta página</h3>
+            <p class="detalle">Mi página de enlaces, con lista de tareas que se guarda en el navegador. Hecha a mano, sin librerías.</p>
+            <ul class="etiquetas" aria-label="Tecnologías">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <p class="aqui">📍 Estás aquí</p>
+          </div>
+        </article>
+      </li>
+    </ul>
+
+    <h2 id="tareas">Mis tareas</h2>
+    <section class="caja" aria-labelledby="tareas">
+      <form class="form-tarea" id="form-tarea">
+        <label for="nueva-tarea" class="sr-only">Nueva tarea</label>
+        <input id="nueva-tarea" type="text" placeholder="¿Qué necesitas hacer?" autocomplete="off" maxlength="200">
+        <button type="submit" class="btn-primario">Añadir</button>
+      </form>
+
+      <ul class="lista" id="lista"></ul>
+      <p class="vacio" id="vacio" hidden>No hay tareas todavía</p>
+
+      <div class="pie-tareas">
+        <span id="contador">0 pendientes</span>
+        <div class="filtros" role="group" aria-label="Filtrar tareas">
+          <button type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+          <button type="button" data-filtro="pendientes" aria-pressed="false">Pendientes</button>
+          <button type="button" data-filtro="completadas" aria-pressed="false">Completadas</button>
+        </div>
+        <button type="button" class="btn-limpiar" id="btn-limpiar">Borrar completadas</button>
+      </div>
+
+      <p class="ayuda">Consejo: haz doble clic en una tarea para editarla.</p>
+    </section>
+
+    <h2 id="ideas">Mis ideas</h2>
+    <!-- ✏️ Añade aquí tus ideas (o usa el comando /idea). Quita el párrafo .ideas-vacio cuando haya al menos una -->
+    <ul class="tarjetas" id="lista-ideas" aria-labelledby="ideas">
+      <li>
+        <div class="tarjeta morado">
+          <span class="icono" aria-hidden="true">⭐</span>
+          <span>
+            <span class="titulo">Ser GitHub Star</span>
+            <span class="detalle">Mi meta: aportar tanto a la comunidad que GitHub me reconozca</span>
+          </span>
+        </div>
+      </li>
+      <li>
+        <div class="tarjeta azul">
+          <span class="icono" aria-hidden="true">🏆</span>
+          <span>
+            <span class="titulo">Ser Microsoft MVP</span>
+            <span class="detalle">Mi meta: compartir lo que aprendo hasta que Microsoft me reconozca</span>
+          </span>
+        </div>
+      </li>
+    </ul>
+
+    <footer>
+      <p>© <span id="anio"></span> Sander Ramirez · Hecho con cariño</p>
+    </footer>
+  </div>
+
+  <script>
+    const CLAVE = 'tareas-personales';
+
+    let tareas = [];
+    let filtro = 'todas';
+
+    const form = document.getElementById('form-tarea');
+    const input = document.getElementById('nueva-tarea');
+    const lista = document.getElementById('lista');
+    const vacio = document.getElementById('vacio');
+    const contador = document.getElementById('contador');
+    const btnLimpiar = document.getElementById('btn-limpiar');
+    const botonesFiltro = document.querySelectorAll('[data-filtro]');
+
+    // ---------- Persistencia ----------
+    function cargar() {
+      try {
+        const datos = JSON.parse(localStorage.getItem(CLAVE));
+        tareas = Array.isArray(datos) ? datos : [];
+      } catch {
+        tareas = [];
+      }
+    }
+
+    function guardar() {
+      try {
+        localStorage.setItem(CLAVE, JSON.stringify(tareas));
+      } catch {
+        // Sin almacenamiento disponible: la página sigue funcionando sin guardar.
+      }
+    }
+
+    // ---------- Acciones ----------
+    function agregar(texto) {
+      texto = texto.trim();
+      if (!texto) return;
+      tareas.unshift({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), texto, hecha: false });
+      guardar();
+      render();
+    }
+
+    function alternar(id) {
+      const t = tareas.find(t => t.id === id);
+      if (t) t.hecha = !t.hecha;
+      guardar();
+      render();
+    }
+
+    function borrar(id) {
+      tareas = tareas.filter(t => t.id !== id);
+      guardar();
+      render();
+    }
+
+    function editar(id, texto) {
+      texto = texto.trim();
+      if (!texto) return borrar(id);
+      const t = tareas.find(t => t.id === id);
+      if (t) t.texto = texto;
+      guardar();
+      render();
+    }
+
+    function borrarCompletadas() {
+      tareas = tareas.filter(t => !t.hecha);
+      guardar();
+      render();
+    }
+
+    // ---------- Renderizado ----------
+    function render() {
+      const visibles = tareas.filter(t =>
+        filtro === 'pendientes' ? !t.hecha :
+        filtro === 'completadas' ? t.hecha : true
+      );
+
+      lista.replaceChildren(...visibles.map(t => {
+        const li = document.createElement('li');
+        li.className = 'tarea' + (t.hecha ? ' hecha' : '');
+        li.dataset.id = t.id;
+
+        const check = document.createElement('input');
+        check.type = 'checkbox';
+        check.checked = t.hecha;
+        check.setAttribute('aria-label', 'Marcar como completada');
+
+        const span = document.createElement('span');
+        span.className = 'texto';
+        span.textContent = t.texto;
+
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn-borrar';
+        btn.textContent = '✕';
+        btn.setAttribute('aria-label', 'Borrar tarea');
+
+        li.append(check, span, btn);
+        return li;
+      }));
+
+      vacio.hidden = visibles.length > 0;
+      vacio.textContent = tareas.length === 0
+        ? 'No hay tareas todavía'
+        : 'No hay tareas en este filtro';
+
+      const pendientes = tareas.filter(t => !t.hecha).length;
+      contador.textContent = `${pendientes} ${pendientes === 1 ? 'pendiente' : 'pendientes'}`;
+      btnLimpiar.disabled = !tareas.some(t => t.hecha);
+
+      botonesFiltro.forEach(b => b.setAttribute('aria-pressed', b.dataset.filtro === filtro));
+    }
+
+    // ---------- Eventos ----------
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      agregar(input.value);
+      input.value = '';
+      input.focus();
+    });
+
+    lista.addEventListener('change', e => {
+      if (e.target.matches('input[type="checkbox"]')) {
+        alternar(e.target.closest('.tarea').dataset.id);
+      }
+    });
+
+    lista.addEventListener('click', e => {
+      if (e.target.closest('.btn-borrar')) {
+        borrar(e.target.closest('.tarea').dataset.id);
+      }
+    });
+
+    lista.addEventListener('dblclick', e => {
+      const span = e.target.closest('.texto');
+      if (!span) return;
+      const id = span.closest('.tarea').dataset.id;
+
+      const campo = document.createElement('input');
+      campo.className = 'editar';
+      campo.value = span.textContent;
+      campo.maxLength = 200;
+      campo.setAttribute('aria-label', 'Editar tarea');
+      span.replaceWith(campo);
+      campo.focus();
+      campo.select();
+
+      let terminado = false;
+      const terminar = guardarCambios => {
+        if (terminado) return;
+        terminado = true;
+        guardarCambios ? editar(id, campo.value) : render();
+      };
+      campo.addEventListener('keydown', ev => {
+        if (ev.key === 'Enter') terminar(true);
+        if (ev.key === 'Escape') terminar(false);
+      });
+      campo.addEventListener('blur', () => terminar(true));
+    });
+
+    botonesFiltro.forEach(b => b.addEventListener('click', () => {
+      filtro = b.dataset.filtro;
+      render();
+    }));
+
+    btnLimpiar.addEventListener('click', borrarCompletadas);
+
+    // ---------- Inicio ----------
+    const avatar = document.getElementById('avatar');
+    if (avatar && !avatar.querySelector('img')) {
+      const nombre = document.getElementById('nombre').textContent.trim();
+      avatar.textContent = nombre
+        .split(/\s+/).slice(0, 2).map(p => p[0]?.toUpperCase() ?? '').join('');
+    }
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    cargar();
+    render();
+  </script>
+</body>
+</html>

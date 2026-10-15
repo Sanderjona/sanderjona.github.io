@@ -1,0 +1,14 @@
+# Ajustes personales de Claude Code (no se comparten)
+.claude/settings.local.json
+
+# Archivos temporales de Playwright y capturas sueltas
+.playwright-mcp/
+out.png
+
+# Copias de seguridad y borradores (el repositorio es público)
+index-anterior.html
+mi-pagina.html
+
+# Archivos de sistema de Windows
+Thumbs.db
+desktop.ini
