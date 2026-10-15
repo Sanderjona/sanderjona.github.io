@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Proyecto
 
-Página personal de enlaces de Sander Ramirez. Es un sitio estático sin compilación, dependencias, pruebas ni linter. Está en un repositorio git (rama `main`, sin remoto).
+Página personal de enlaces de Sander Ramirez. Es un sitio estático sin compilación, dependencias, pruebas ni linter. Está en un repositorio git (rama `main`, remoto `origin` en GitHub).
 
 - `index.html`: todo el sitio. Tiene el CSS dentro de `<style>` y el JS dentro de `<script>`. Contiene:
   - una cabecera con foto e iconos de redes;
@@ -15,7 +15,7 @@ Página personal de enlaces de Sander Ramirez. Es un sitio estático sin compila
   - el bloque «Mis ideas» (`#lista-ideas`), con tarjetas estáticas sin JS.
 - `foto.jpg`: el avatar.
 
-Se publicará con GitHub Pages en `https://sanderjona.github.io/` (repositorio público `sanderjona.github.io`). Las etiquetas Open Graph de `index.html` ya apuntan a esa dirección.
+Se publica con GitHub Pages en `https://sanderjona.github.io/` (repositorio público `Sanderjona/sanderjona.github.io`): cada `git push` a `main` actualiza la web en uno o dos minutos. Las etiquetas Open Graph de `index.html` apuntan a esa dirección. La rama local `respaldo-historial` guarda el historial antiguo, que incluye `index-anterior.html`: no la subas nunca (nada de `git push --all`).
 
 Las reglas detalladas están en `.claude/rules/`:
 
@@ -60,3 +60,29 @@ Captura para revisar el resultado:
 Chrome headless no renderiza por debajo de unos 500 px de ancho. La versión móvil (`max-width: 480px`) se revisa en el modo dispositivo de DevTools (F12).
 
 Para abrir el proyecto en Antigravity, usa `"$LOCALAPPDATA/Programs/Antigravity IDE/bin/antigravity-ide" .`. El comando `antigravity` no existe.
+
+## Estado del proyecto
+
+### Hecho el 15/10/2026
+
+- Título «sanderdev» en la esquina superior izquierda (`p.marca`). «dev» va en `--azul`.
+- La foto (`.avatar`) se mueve al pasar el ratón, igual que las tarjetas de enlaces.
+- Sección «Mis proyectos» (`#proyectos`) con cuatro proyectos sacados de los repositorios de GitHub: Bienes raíces, El Blog de Sander, Hello-Git y esta página. En «Mis enlaces» hay una tarjeta que lleva a la sección.
+- Etiquetas `meta description`, Open Graph y `twitter:card` para que se vea la vista previa al compartir.
+- `index-anterior.html` y `mi-pagina.html` se quitaron y se añadieron a `.gitignore`. El historial se juntó en un único commit para que no aparezcan en GitHub. El historial antiguo quedó en la rama local `respaldo-historial`.
+- Web publicada en GitHub Pages: `https://sanderjona.github.io/`.
+
+### Pendiente
+
+- La lista de tareas usa `localStorage`, así que cada visitante ve la suya, vacía, y no las de Sander. Hay que elegir entre convertirla en una lista fija tipo «Ahora estoy aprendiendo…» o dejarla solo para uso personal y quitar su tarjeta de «Mis enlaces».
+- Decidir si se quedan las sombras negras de los botones de proyectos (`--sombra-boton`). Rompen la regla de «sombras blancas» de `diseno.md`, pero las blancas casi no se ven sobre las tarjetas claras. Si se quedan, hay que anotarlo en la regla.
+- Favicon con el estilo neo-brutalista (por ejemplo, «sd»).
+- Botón «Descargar CV» (falta el PDF).
+- Quitar los enlaces repetidos: las redes aparecen en los iconos de la cabecera y otra vez en las tarjetas. Ojo con la regla de `redes-sociales.md`, que pide mantener ambos sitios.
+- Desactivar las animaciones con `prefers-reduced-motion`.
+- Pasar `text-reviewer` a los textos (por ejemplo, «¡Bienvenid@!») y el agente `reviewer` a la accesibilidad. Para el agente hace falta que el MCP de Playwright conecte (el 15/10 falló con un timeout).
+- Opcional: añadir una captura de cada proyecto y borrar `respaldo-historial` cuando ya no haga falta.
+
+### Siguiente paso
+
+Decidir qué pasa con la lista de tareas. Ahora que la web es pública, es lo primero que nota un visitante.
